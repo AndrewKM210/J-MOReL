@@ -1,0 +1,13 @@
+env_name: HalfCheetah-v2
+activation: swish
+fit_epochs: 600
+hidden_size:
+- 512
+- 512
+- 512
+- 512
+num_models: 7
+probabilistic: true
+scheduler: ExponentialLR
+scheduler_gamma: 0.995
+device: cuda

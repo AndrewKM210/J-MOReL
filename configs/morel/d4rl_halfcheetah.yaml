@@ -1,0 +1,11 @@
+env_name: 'HalfCheetah-v2'
+reward_file: 'reward_functions/gym_halfcheetah.py'
+pessimism_coef: 50
+penalty: -200.0
+num_iter: 2500
+update_paths: 40
+horizon: 1000
+eval_rollouts: 25
+init_log_std: -1.0
+min_log_std: -1.0
+device: 'cuda'

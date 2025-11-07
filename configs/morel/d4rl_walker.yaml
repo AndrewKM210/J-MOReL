@@ -1,0 +1,11 @@
+env_name: 'Walker2d-v2'
+reward_file: 'reward_functions/gym_walker.py'
+pessimism_coef: 20
+penaly: -30
+num_iter: 1000
+update_paths: 100
+horizon: 700
+eval_rollouts: 25
+init_log_std: -0.5
+min_log_std: -1.0
+device: 'cuda'

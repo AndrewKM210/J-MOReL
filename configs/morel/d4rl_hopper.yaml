@@ -1,0 +1,11 @@
+env_name: 'Hopper-v2'
+reward_file: 'reward_functions/gym_hopper.py'
+pessimism_coef: 10
+penalty: -50
+num_iter: 500
+update_paths: 50
+horizon: 700
+eval_rollouts: 25
+init_log_std: -0.25
+min_log_std: -1.0
+device: 'cuda'

@@ -1,0 +1,11 @@
+env_name: Hopper-v2
+activation: relu
+fit_epochs: 300
+hidden_size:
+- 512
+- 512
+num_models: 4
+probabilistic: false
+scheduler: null
+scheduler_gamma: null
+device: cuda
