@@ -61,22 +61,25 @@ The python version used is 3.10.0 and the dependencies must be installed with:
 pip install -r requirements.txt
 ```
 
-First, the datasets must be collected with the `collect_d4rl_dataset.py` script:
+Additionally, it is necessary to download and install the repository where I define the ensemble of dynamics models:
 
 ```bash
-python collect_d4rl_dataset.py --env_name halfcheetah-medium-v0 --output datasets/halfcheetah_medium.pkl
+git clone https://github.com/AndrewKM210/dynamics-ensembles-rl.git
+cd dynamics-ensembles-rl
+pip install -e .
+cd ..
 ```
 
-Then, the `train_ensemble.py` script uses the dataset to train the ensemble of the dynamics models:
+This will allow the user to explore and modify the contents of everything related to the models. The `learn_model.py` script can be used to train the ensemble of dynamics models:
 
 ```bash
- python train_ensemble.py  --config configs/learn_ensemble/hopper_morel.yaml --data_path datasets/hopper_medium.pkl --output models/hopper_medium.pkl
+python dynamics-ensembles-rl/learn_model.py --dataset halfcheetah-medium-v0 --dataset_path datasets/halfcheetah_medium.pkl --config dynamics-ensembles-rl/configs/halfcheetah_pnn.yaml --output ensembles/halfcheetah_medium.pkl
 ```
 
 The `train_morel.py` script trains a policy with the previous dataset and ensemble using the MOReL framework. The pessimism coefficient shoud be tuned depending on the ensemble. 
 
 ```bash
-python train_morel.py --config configs/morel/d4rl_halfcheetah.yaml --data_path datasets/halfcheetah_medium.pkl --ensemble_path models/halfcheetah_medium.pkl --output output --pessimism_coef 50
+python train_morel.py --config configs/d4rl_halfcheetah.yaml --data_path datasets/halfcheetah_medium.pkl --ensemble_path models/halfcheetah_medium.pkl --output output --pessimism_coef 50
 ```
 
 The final policy and logs will be saved in the directory specified by the `output` argument.
