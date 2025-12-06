@@ -1,7 +1,7 @@
 # J-MOReL: Improved Reimplementation of MOReL
 
 ## Overview
-This repository provides a clean and modular reimplementation of MOReL (Kidambi et al., NeurIPS 2020), a model-based offline reinforcement learning framework that builds pessimistic MDPs to handle uncertainty in the predictions of the models. It also includes several improvements to MOReL and model-based RL that I proposed in my MSc. thesis, listed below.
+This repository provides a clean and modular reimplementation of MOReL (Kidambi et al., NeurIPS 2020), a model-based offline reinforcement learning framework that builds pessimistic MDPs to handle uncertainty in the predictions of the models. It also includes several improvements to MOReL and model-based RL that I proposed in my MSc. thesis (link [here](https://ulb-dok.uibk.ac.at/ulbtirolhs/content/titleinfo/12445583)), listed below.
 
 ## Key Improvements
 - Neural networks ensemble (the model): 
@@ -115,11 +115,13 @@ If you use this code in your research, please cite the original paper:
 And if you reference these improvements (publishing pending):
 
 ```bibtex
-@misc{j-morel,
-  author = {Andrew K. Mackay},
-  title = {J-MOReL},
-  year = {2025},
-  howpublished = {\url{https://github.com/andrewkm210/j-morel}},
+@mastersthesis{parrott2025mbrl,
+  title        = {Model-based Reinforcement Learning: Optimizing Action Choice on Learned Dynamics},
+  author       = {Mackay Parrott, Andrew Keon},
+  school       = {University of Innsbruck},
+  year         = {2025},
+  month        = {oct},
+  url          = {https://ulb-dok.uibk.ac.at/ulbtirolhs/content/titleinfo/12445583}
 }
 ```
 
