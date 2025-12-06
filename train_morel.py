@@ -159,7 +159,7 @@ def train_morel(ensemble, paths, config):
     # Compute disagreement threshold
     disc_log = Log()
     morel.set_threshold(s, a, sp, config.pessimism_coef, config.percentile, disc_log)
-    config["threshold"] = float(morel.threshold)
+    config["threshold"] = float(morel.threshold) if morel.threshold is not None else morel.threshold
 
     # Ouput statistics
     print("\nDisagreement statistics")

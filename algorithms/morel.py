@@ -153,7 +153,8 @@ class MOReL:
         paths, paths_model = self.agent.sample_trajectories(n, init_states, self.obs_scale)
         self.logger.log("paths_init", len(paths))
         self.logger.log("samples_init", self.count_samples(paths))
-        paths = self.penalize_trajectories(paths, paths_model)
+        if self.threshold is not None:
+            paths = self.penalize_trajectories(paths, paths_model)
         self.logger.log("samples_update", self.count_samples(paths))
         self.logger.log("paths_update", len(paths))
         paths = self.normalize_paths(paths, self.obs_scale)
