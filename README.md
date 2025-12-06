@@ -95,7 +95,7 @@ Tips for tuning the pessimism coefficient:
     - `train_score` significantly exceeding `eval_score` → decrease pessimism coefficient
 
 ## Work in Progress
-- Use dynamics_ensemble repo for models.
+- Save pickles as CPU, then move to GPU (if available)
 - Track metrics in both train_ensemble and train_morel with guild or MLflow.
 - Override config with command line arguments.
 - Show results.
