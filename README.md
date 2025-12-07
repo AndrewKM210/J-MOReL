@@ -96,8 +96,9 @@ Tips for tuning the pessimism coefficient:
 
 ## Work in Progress
 - Save pickles as CPU, then move to GPU (if available)
-- Track metrics in both train_ensemble and train_morel with guild or MLflow.
-- Override config with command line arguments.
+- Track metrics in train_morel.py with MLflow.
+- Add guild tracking
+- Override train_morel.py config with command line arguments.
 - Show results.
 
 ## Citation
