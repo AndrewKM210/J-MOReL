@@ -190,9 +190,3 @@ class MOReL:
             path = dict(observations=np.array(observations), actions=np.array(actions), rewards=np.array(rewards))
             paths.append(path)
         return np.mean([np.sum(p["rewards"]) for p in paths])
-
-    def save_policy(self):
-        self.policy.set_transformations(in_scale=1.0 / self.e.obs_mask)
-        self.best_policy.set_transformations(in_scale=1.0 / self.e.obs_mask)
-        pickle.dump(self.policy, open(self.out_dir + "/final_policy.pickle", "wb"))
-        pickle.dump(self.policy, open(self.out_dir + "/best_policy.pickle", "wb"))
