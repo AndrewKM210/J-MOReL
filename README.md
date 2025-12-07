@@ -73,13 +73,13 @@ cd ..
 This will allow the user to explore and modify the contents of everything related to the models. The `learn_model.py` script can be used to train the ensemble of dynamics models:
 
 ```bash
-python dynamics-ensembles-rl/learn_model.py --dataset halfcheetah-medium-v0 --dataset_path datasets/halfcheetah_medium.pkl --config dynamics-ensembles-rl/configs/halfcheetah_pnn.yaml --output ensembles/halfcheetah_medium.pkl
+python dynamics-ensembles-rl/train_ensemble.py --dataset halfcheetah-medium-v0 --dataset_path datasets/halfcheetah_medium.pkl --config dynamics-ensembles-rl/configs/halfcheetah_pnn.yaml --output ensembles/halfcheetah_medium.pkl
 ```
 
 The `train_morel.py` script trains a policy with the previous dataset and ensemble using the MOReL framework. The pessimism coefficient shoud be tuned depending on the ensemble. 
 
 ```bash
-python train_morel.py --config configs/d4rl_halfcheetah.yaml --data_path datasets/halfcheetah_medium.pkl --ensemble_path models/halfcheetah_medium.pkl --output output --pessimism_coef 50
+python train_morel.py --config configs/d4rl_halfcheetah.yaml --data_path datasets/halfcheetah_medium.pkl --ensemble_path ensembles/halfcheetah_medium.pkl --output output --pessimism_coef 50
 ```
 
 The final policy and logs will be saved in the directory specified by the `output` argument.
