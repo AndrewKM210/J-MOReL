@@ -85,10 +85,9 @@ class MOReL:
                 for model in tqdm(self.agent.ensemble):
                     val_losses.append(model.compute_loss_batched(s, a, sp))
             best_idx = np.argsort(np.array(val_losses))
-            models = [self.agent.ensemble[i] for i in best_idx[:num_elite]]
-        elif len(models) > num_elite:
-            models = models[:num_elite]
-        self.agent.ensemble = models
+            self.agent.ensemble = [self.agent.ensemble[i] for i in best_idx[:num_elite]]
+        elif len(self.agent.ensemble) > num_elite:
+            self.agent.ensemble = self.agent.ensemble[:num_elite]
         return s, a, sp
 
     def penalize_trajectories(self, paths, paths_model):
