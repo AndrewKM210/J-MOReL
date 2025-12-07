@@ -34,7 +34,8 @@ def load_ensemble(ensemble_path):
     ensemble = pickle.load(open(ensemble_path, "rb"))
     assert type(ensemble) is tuple, "Model must include metadata"
     (ensemble, metadata) = ensemble
-    metadata.pop("obs_mask")
+    if "obs_mask" in metadata.keys():  # for deprecated ensembles
+        metadata.pop("obs_mask")
     for model in ensemble:
         model.nn.eval()
         for param in model.nn.parameters():
