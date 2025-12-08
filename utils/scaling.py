@@ -88,5 +88,5 @@ def scale_obs(obs, obs_scale):
     if type(obs_scale) is tuple:
         obs = (obs - obs_scale[0]) / obs_scale[1]  # Z-Normalization
     elif type(obs_scale) is np.ndarray or type(obs_scale) is torch.Tensor:
-        obs *= obs_scale  # MOReL mask
+        obs = obs * obs_scale  # MOReL mask
     return obs
