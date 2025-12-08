@@ -82,7 +82,18 @@ The `train_morel.py` script trains a policy with the previous dataset and ensemb
 python train_morel.py --config configs/d4rl_halfcheetah.yaml --data_path datasets/halfcheetah_medium.pkl --ensemble_path ensembles/halfcheetah_medium.pkl --output output --pessimism_coef 50
 ```
 
-The final policy and logs will be saved in the directory specified by the `output` argument.
+The final policy and logs will be saved in the directory specified by the `output` argument. Additionally, [guildai](https://github.com/guildai/guildai) can be used to track experiments with the `guild.yaml` config file. To install guildai:
+
+```bash
+pip install guildai
+# pip install 'pydantic<2' fixes NameError
+```
+
+With the current guildai version, a "NameError: Fields must not use names with leading underscores" error is returned when running `guild run`, install 'pydantic<2' to fix this. An example of running a train_morel experiment with custom parameters is:
+
+```bash
+guild run train_morel config=configs/d4rl_halfcheetah.yaml data_path=${PWD}/datasets/halfcheetah_medium.pkl ensemble_path=${PWD}/ensembles/halfcheetah_medium.pkl output=output pessimism_coef=50
+```
 
 Tips for tuning the pessimism coefficient:
 - `paths_truncated`:
@@ -97,7 +108,6 @@ Tips for tuning the pessimism coefficient:
 ## Work in Progress
 - Save pickles as CPU, then move to GPU (if available)
 - Track metrics in train_morel.py with MLflow.
-- Add guild tracking
 - Override train_morel.py config with command line arguments.
 - Show results.
 

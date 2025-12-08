@@ -1,0 +1,28 @@
+train_morel:
+  description: Train J-MOReL on learned dynamics
+  main: train_morel
+  flags-import: all
+  flags:
+    data_path:
+      required: yes
+    config:
+      required: yes
+    ensemble_path: 
+      required: yes
+    output: 'output'
+  output-scalars: 
+    - step: 'Policy optimization step (\step)'
+    - '^(\key) +(\value)'
+  sourcecode: 
+    - exclude: '*'
+    - include: 'algorithms/*.py'
+    - include: 'baselines/*.py'
+    - include: 'configs'
+    - include: 'envs/*.py'
+    - include: 'policies/*.py'
+    - include: 'reward_functions/*.py'
+    - include: 'train_morel.py'
+    - include: 'utils/*.py'
+  requires:
+    - file: ${config}
+      target-path: configs/
