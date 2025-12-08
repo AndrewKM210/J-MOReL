@@ -61,7 +61,7 @@ The python version used is 3.10.0 and the dependencies must be installed with:
 pip install -r requirements.txt
 ```
 
-Additionally, it is necessary to download and install the repository where I define the ensemble of dynamics models:
+This will install the package where I define the ensemble of dynamics models. It is possible to download and install this package locally (to view and edit the code):
 
 ```bash
 git clone https://github.com/AndrewKM210/dynamics-ensembles-rl.git
