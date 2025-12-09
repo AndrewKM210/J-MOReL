@@ -1,5 +1,6 @@
-import random
+import ast
 import os
+import random
 from os import environ
 import numpy as np
 import torch
@@ -30,6 +31,18 @@ def update_config(args, job_data):
             else:
                 job_data[arg] = args_dict[arg]
     return job_data
+
+
+def parse_params(args, config):
+    assert_str = "Additional parameters must have format arg=value"
+    for arg in args:
+        arg = arg.split("=")
+        assert len(arg) == 2, f"{assert_str}: {'='.join(arg)}"
+        param, value = arg[0], ast.literal_eval(arg[1])
+        assert param in config.keys(), f"Parameter not found: {param}"
+        assert type(value) is type(config[param]), f"Incorrect type of {param}: {type(value)}"
+        config[param] = value
+    return config
 
 
 def tensorize(var, device="cpu"):

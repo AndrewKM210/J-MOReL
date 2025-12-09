@@ -5,11 +5,9 @@ import sys
 import time as timer
 from importlib import import_module
 from os import environ
-
 import numpy as np
 from omegaconf import OmegaConf
 from tabulate import tabulate
-
 from algorithms.bc import BC
 from algorithms.mb_npg import ModelBasedNPG
 from algorithms.morel import MOReL
@@ -232,8 +230,6 @@ if __name__ == "__main__":
     parser.add_argument("--output", "-o", type=str, required=True, help="location to store results")
     parser.add_argument("--pessimism_coef", type=float, help="controls the USAD threshold")
     parser.add_argument("--percentile", default=None, type=float, help="percentile of data accepted by USAD")
-    parser.add_argument("--track_eval", action="store_true", help="always track eval_score")
-    parser.add_argument("--seed", type=int, default=123, help="seed for reproducibility")
     parser.add_argument(
         "--obs_scale",
         type=str,
@@ -248,6 +244,12 @@ if __name__ == "__main__":
         default=SCALING_JACOBIAN,
         help="scale disagreements",
     )
+    parser.add_argument("--track_eval", action="store_true", help="always track eval_score")
+    parser.add_argument(
+        "--params", type=str, nargs="+", default=None, help="replaces config file parameters, format: param=value"
+    )
+    parser.add_argument("--seed", type=int, default=123, help="seed for reproducibility")
+    args = parser.parse_args()
 
     # Unpack args and config
     args = parser.parse_args()
@@ -258,6 +260,10 @@ if __name__ == "__main__":
     if args.percentile is None:
         config.percentile = None
     utils.create_output_dir(config.output)
+
+    # Parse additional arguments
+    if args.params is not None:
+        config = utils.parse_params(args.params, config)
 
     # Load ensemble
     print("Loading ensemble", config.ensemble_path)

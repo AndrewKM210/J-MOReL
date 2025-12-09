@@ -84,7 +84,7 @@ The `train_morel.py` script trains a policy with the previous dataset and ensemb
 python train_morel.py --config configs/d4rl_halfcheetah.yaml --data_path datasets/halfcheetah_medium.pkl --ensemble_path ensembles/halfcheetah_medium.pkl --output output --pessimism_coef 50
 ```
 
-The final policy and logs will be saved in the directory specified by the `output` argument. Additionally, [guildai](https://github.com/guildai/guildai) can be used to manage and track experiments with the `guild.yml` config file. This library can be useful for staging and tracking experiments in clusters (combined with SLURM). To install guildai:
+Parameters in the config file can be overriden with the `params` argument. The `track_eval` argument will compute the evaluation return in all training steps (otherwise every 50th to optimize execution time).The final policy and logs will be saved in the directory specified by the `output` argument. Additionally, [guildai](https://github.com/guildai/guildai) can be used to manage and track experiments with the `guild.yml` config file. This library can be useful for staging and tracking experiments in clusters (combined with SLURM). To install guildai:
 
 ```bash
 pip install guildai
@@ -119,9 +119,7 @@ All results are shown in [my thesis](https://ulb-dok.uibk.ac.at/ulbtirolhs/conte
 </picture>
 
 ## Work in Progress
-- Save pickles as CPU, then move to GPU (if available)
 - Track metrics in train_morel.py with MLflow.
-- Override train_morel.py config with command line arguments.
 
 ## Citation
 
