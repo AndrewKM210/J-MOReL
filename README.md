@@ -53,7 +53,7 @@ min_log_std: -1.0
 device: 'cuda' # 'cuda' (for gpu) or 'cpu'
 ```
 
-## Example Usage
+## Setup
 
 The python version used is 3.10.0 and the dependencies must be installed with:
 
@@ -61,7 +61,7 @@ The python version used is 3.10.0 and the dependencies must be installed with:
 pip install -r requirements.txt
 ```
 
-This will install the package where I define the ensemble of dynamics models. It is possible to download and install this package locally (to view and edit the code):
+It is also necessary to download and install the package where I define the ensembles of dynamics models (this allows to view and edit the code):
 
 ```bash
 git clone https://github.com/AndrewKM210/dynamics-ensembles-rl.git
@@ -69,6 +69,8 @@ cd dynamics-ensembles-rl
 pip install -e .
 cd ..
 ```
+
+## Example Usage
 
 This will allow the user to explore and modify the contents of everything related to the models. The `learn_model.py` script can be used to train the ensemble of dynamics models:
 
@@ -82,18 +84,20 @@ The `train_morel.py` script trains a policy with the previous dataset and ensemb
 python train_morel.py --config configs/d4rl_halfcheetah.yaml --data_path datasets/halfcheetah_medium.pkl --ensemble_path ensembles/halfcheetah_medium.pkl --output output --pessimism_coef 50
 ```
 
-The final policy and logs will be saved in the directory specified by the `output` argument. Additionally, [guildai](https://github.com/guildai/guildai) can be used to track experiments with the `guild.yaml` config file. To install guildai:
+The final policy and logs will be saved in the directory specified by the `output` argument. Additionally, [guildai](https://github.com/guildai/guildai) can be used to manage and track experiments with the `guild.yml` config file. This library can be useful for staging and tracking experiments in clusters (combined with SLURM). To install guildai:
 
 ```bash
 pip install guildai
 # pip install 'pydantic<2' fixes NameError
 ```
 
-With the current guildai version, a "NameError: Fields must not use names with leading underscores" error is returned when running `guild run`, install 'pydantic<2' to fix this. An example of running a train_morel experiment with custom parameters is:
+With the current guildai version, a "NameError: Fields must not use names with leading underscores" error is returned when running `guild run`, install 'pydantic<2' to fix this. For running a train_ensemble experiment, check the dynamics-ensembles-rl README ([here](https://github.com/AndrewKM210/dynamics-ensembles-rl/blob/main/README.md)). An example of running a train_morel experiment with custom parameters is:
 
 ```bash
 guild run train_morel config=configs/d4rl_halfcheetah.yaml data_path=${PWD}/datasets/halfcheetah_medium.pkl ensemble_path=${PWD}/ensembles/halfcheetah_medium.pkl output=output pessimism_coef=50
 ```
+
+Experiments can be tracked in real time with `guild tensorboard`. The final results of several runs can be compared and stored to a .csv file with `guild compare --csv results.csv`.
 
 Tips for tuning the pessimism coefficient:
 - `paths_truncated`:
