@@ -72,7 +72,9 @@ cd ..
 
 ## Example Usage
 
-This will allow the user to explore and modify the contents of everything related to the models. The `learn_model.py` script can be used to train the ensemble of dynamics models:
+The trained ensembles used for the [Results section](#Results) section are included in [this HuggingFace repository](https://huggingface.co/AndrewKM210/dynamics-ensembles-rl), however it is still necessary to download and prepare the dataset (by executing the script until the dataset is ready, for example). 
+
+The `learn_model.py` script can be used to download the dataset and train an ensemble of dynamics models. The `dataset_path` must be specified to save the processed dataset for policy search. More instructions on how to train an ensemble can be found in the [README.md of dynamics-ensembles-rl](dynamics-ensembles-rl/README.md).
 
 ```bash
 python dynamics-ensembles-rl/train_ensemble.py --dataset halfcheetah-medium-v0 --dataset_path datasets/halfcheetah_medium.pkl --config dynamics-ensembles-rl/configs/halfcheetah_pnn.yaml --output ensembles/halfcheetah_medium.pkl
