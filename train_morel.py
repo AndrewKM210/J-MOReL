@@ -30,10 +30,12 @@ environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
 environ["MKL_THREADING_LAYER"] = "GNU"
 
 
-def load_ensemble(ensemble_path):
+def load_ensemble(ensemble_path, device):
     ensemble = pickle.load(open(ensemble_path, "rb"))
     assert type(ensemble) is tuple, "Model must include metadata"
     (ensemble, metadata) = ensemble
+    for m in ensemble:
+        m.to(device)
     if "obs_mask" in metadata.keys():  # for deprecated ensembles
         metadata.pop("obs_mask")
     for model in ensemble:
@@ -259,7 +261,7 @@ if __name__ == "__main__":
 
     # Load ensemble
     print("Loading ensemble", config.ensemble_path)
-    ensemble, metadata = load_ensemble(config.ensemble_path)
+    ensemble, metadata = load_ensemble(config.ensemble_path, config.device)
     print("\nEnsemble metadata")
     print(tabulate(metadata.items()))
 
