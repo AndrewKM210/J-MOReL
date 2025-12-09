@@ -109,11 +109,19 @@ Tips for tuning the pessimism coefficient:
     - `train_score` barely increasing → increase pessimism coefficient
     - `train_score` significantly exceeding `eval_score` → decrease pessimism coefficient
 
+## Results
+
+All results are shown in [my thesis](https://ulb-dok.uibk.ac.at/ulbtirolhs/content/titleinfo/12445583), the [results/plot_results.ipynb](results/plot_results.ipynb) notebook gives an example on how to plot the average return using the generated logs. The following figure shows how the proposed improvements outperform the original MOReL framework. To replicate the MOReL experiments, set the `disc_scale` and `obs_scale` parameters to 'morel', and train the ensemble using one of the MOReL configs.
+
+<picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/avg_return_dark.png">
+    <img src="assets/avg_return_light.png" alt="Average return.">
+</picture>
+
 ## Work in Progress
 - Save pickles as CPU, then move to GPU (if available)
 - Track metrics in train_morel.py with MLflow.
 - Override train_morel.py config with command line arguments.
-- Show results.
 
 ## Citation
 
