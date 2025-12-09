@@ -122,6 +122,7 @@ All results are shown in [my thesis](https://ulb-dok.uibk.ac.at/ulbtirolhs/conte
 
 ## Work in Progress
 - Track metrics in train_morel.py with MLflow.
+- Upload only weights to HuggingFace (pickles are marked as unsafe), convert into ensemble here.
 
 ## Citation
 
