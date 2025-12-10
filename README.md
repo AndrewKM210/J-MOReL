@@ -72,13 +72,32 @@ cd ..
 
 ## Example Usage
 
-The trained ensembles used for the [Results section](#Results) section are included in [this HuggingFace repository](https://huggingface.co/AndrewKM210/dynamics-ensembles-rl), however it is still necessary to download and prepare the dataset (by executing the script until the dataset is ready, for example). 
+### Using Trained Ensembles
 
-The `learn_model.py` script can be used to download the dataset and train an ensemble of dynamics models. The `dataset_path` must be specified to save the processed dataset for policy search. More instructions on how to train an ensemble can be found in the [README.md of dynamics-ensembles-rl](dynamics-ensembles-rl/README.md).
+The weights of the fully trained ensembles used for the [Results section](#Results) section are included in [this HuggingFace repository](https://huggingface.co/AndrewKM210/dynamics-ensembles-rl). These can be downloaded to the *ensembles_hf* directory with:
+```bash
+git clone https://huggingface.co/AndrewKM210/dynamics-ensembles-rl ensembles_rf
+```
+
+The ensembles must be reconstructed from the weights with:
+```bash
+python dynamics-ensembles-rl/convert_hf_ensemble.py --input ensembles_hf/halfcheetah_medium --output ensembles/halfcheetah_medium.pkl
+```
+
+The datasets the ensembles were trained on must be processed and saved to a file:
+```bash
+python dynamics-ensembles-rl/load_dataset.py --dataset halfcheetah-medium-v0 --output datasets/halfcheetah_medium.pkl
+```
+
+### Training Ensembles
+
+If not using one of the published ensembles, the `learn_model.py` script can be used to download the dataset and train an ensemble of dynamics models. The `dataset_path` must be specified to save the processed dataset for policy search. More instructions on how to train an ensemble can be found in the [README.md of dynamics-ensembles-rl](dynamics-ensembles-rl/README.md).
 
 ```bash
 python dynamics-ensembles-rl/train_ensemble.py --dataset halfcheetah-medium-v0 --dataset_path datasets/halfcheetah_medium.pkl --config dynamics-ensembles-rl/configs/halfcheetah_pnn.yaml --output ensembles/halfcheetah_medium.pkl
 ```
+
+### Training J-MOReL
 
 The `train_morel.py` script trains a policy with the previous dataset and ensemble using the MOReL framework. The pessimism coefficient shoud be tuned depending on the ensemble. 
 
