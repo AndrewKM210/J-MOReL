@@ -55,7 +55,7 @@ device: 'cuda' # 'cuda' (for gpu) or 'cpu'
 
 ## Setup
 
-The python version used is 3.10.0 and the dependencies must be installed with:
+The python version used is 3.10.18 and the dependencies must be installed with:
 
 ```bash
 pip install -r requirements.txt
